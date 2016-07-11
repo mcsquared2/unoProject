@@ -8,4 +8,8 @@ var reactify = require('reactify'); // transpile our JSX to JS
 var source = require('vinyl-source-stream'); // use conventionaltext stream with gulp
 var concat = require('gulp-concat'); // concatenate our files
 
+var config = {
+	port: 9042
+}
+
 
