@@ -8,7 +8,7 @@ var mainGame = React.createClass( function() {
 		return (
 			<div>
 				<helmet title = "UNO" />
-			<div>
+			</div>
 			<div>
 				<h1> UNO </h1>
 			</div>

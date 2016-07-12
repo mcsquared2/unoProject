@@ -3,10 +3,14 @@
 
 
 var React = require('react'); 
+var 
 
 var login = React.createClass( function() {
 	render: function() {
 		return (
+			<div> 
+				<h1> Sign Up </h1>
+			</div>
 
 		)
 	}
