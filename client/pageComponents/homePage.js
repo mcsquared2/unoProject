@@ -17,7 +17,7 @@ var homePage = React.createClass( function() {
 				<ul>
 					<li><Link to = "/login"> Log In </Link></li>
 					<li><Link to = "/sign-up"> Sign Up </Link></li>
-					<li><Link to = "/play-game"> Skip to Game </Link></li>
+					<li><Link to = "play-game"> Skip to Game </Link></li>
 				</ul>
 			</div>
 

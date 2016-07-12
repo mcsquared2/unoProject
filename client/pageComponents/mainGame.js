@@ -1,6 +1,6 @@
 'use strict';
 
-var helmet = require('helmet')
+var Helmet = require('helmet')
 var React = require('react'); 
 
 var mainGame = React.createClass( function() {
