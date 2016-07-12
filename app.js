@@ -4,7 +4,7 @@ var morgan = require('morgan');
 var app = express();
 
 app.use(morgan('dev'));
-
+app.use(express.static(__dirname + '/dist'));
 
 app.use('*', function (req, res)
 {
