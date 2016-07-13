@@ -22,7 +22,7 @@ var %s = React.createClass({
 
 });
 
-module.exprts = %s;""" % (name, name))
+module.exports = %s;""" % (name, name))
 	f.close()
 
 main()
