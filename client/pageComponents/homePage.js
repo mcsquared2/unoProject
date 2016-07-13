@@ -2,6 +2,7 @@
 
 var React = require('react'); 
 var Link = require('react-router').Link;
+var Card = require("../Card");
 
 var homePage = React.createClass( {
 	render: function() {
@@ -14,9 +15,9 @@ var homePage = React.createClass( {
 				</div>
 				<div>
 					<ul>
-						<li><Link to = "/login"> Log In </Link></li>
-						<li><Link to = "/register"> Sign Up </Link></li>
-						<li><Link to = "/game"> Skip to Game </Link></li>
+						<li><Link to = "/login"> <Card color="red" num="Log In" /></Link></li>
+						<li><Link to = "/register"> <Card color="blue" num="Sign Up" /></Link></li>
+						<li><Link to = "/game"><Card color="red" num="Skip To Game" /></Link></li>
 					</ul>
 				</div>
 			</div>
@@ -27,3 +28,5 @@ var homePage = React.createClass( {
 });
 
 module.exports = homePage;
+
+// 
