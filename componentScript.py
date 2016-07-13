@@ -17,7 +17,7 @@ var %s = React.createClass({
 	render: function() {
 		return (
 
-		)
+		);
 	}
 
 });
