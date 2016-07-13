@@ -11,7 +11,7 @@ var homePage = React.createClass( {
 				<div>
 				</div>
 				<div>
-					<h1> Home Page </h1>
+					<h1> Welcome to </h1><img src="images/unoLogo.png"/><h1>Online!</h1>
 				</div>
 				<div>
 					<ul>
