@@ -1,16 +1,16 @@
 'use strict';
 
+var Helmet = require('helmet')
 var React = require('react'); 
 
-var mainGame = React.createClass( {
+var mainGame = React.createClass( function() {
 	render: function() {
 		return (
 			<div>
-				<div>
-				</div>
-				<div>
-					<h1> UNO </h1>
-				</div>
+				<helmet title = "UNO" />
+			</div>
+			<div>
+				<h1> UNO </h1>
 			</div>
 
 		)

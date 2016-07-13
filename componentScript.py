@@ -13,7 +13,7 @@ For instance, if you were in the src folder and you wanted to put the component 
 
 var React = require('react'); 
 
-var %s = React.createClass({
+var %s = React.createClass( function() {
 	render: function() {
 		return (
 
