@@ -17,12 +17,12 @@ var %s = React.createClass( function() {
 	render: function() {
 		return (
 
-		)
+		);
 	}
 
 });
 
-module.exprts = %s;""" % (name, name))
+module.exports = %s;""" % (name, name))
 	f.close()
 
 main()
