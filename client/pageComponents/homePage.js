@@ -9,19 +9,7 @@ var homePage = React.createClass( function() {
 	render: function() {
 		return (
 			<div>
-<<<<<<< HEAD
-				<Helmet title = "Home Page" />
-			</div>
-			<div>
-				<h1> Home Page </h1>
-			</div>
-			<div>
-				<ul>
-					<li><Link to = "/login"> Log In </Link></li>
-					<li><Link to = "/sign-up"> Sign Up </Link></li>
-					<li><Link to = "play-game"> Skip to Game </Link></li>
-				</ul>
-=======
+
 				<div>
 				</div>
 				<div>
@@ -34,7 +22,6 @@ var homePage = React.createClass( function() {
 						<li><Link to = "/game"><Card color="red" num="Skip To Game" /></Link></li>
 					</ul>
 				</div>
->>>>>>> 7781fc18f0a9bc0d41eac1deedd4a4798e84ff60
 			</div>
 
 		);
