@@ -1,7 +1,8 @@
 'use strict';
 
 
-var React = require('react'); 
+var React = require('react');
+var TextInput = require("../common/TextInput"); 
 
 var LoginForm = React.createClass({
 	render: function() {
