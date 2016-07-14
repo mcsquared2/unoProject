@@ -1,7 +1,8 @@
 'use strict';
 
 var React = require('react'); 
-var signUpForm = require('../common/signUpForm')
+var SignUpForm = require('./profile/signUpForm');
+
 
 var signUp = React.createClass({
 	getInitialState:function() {
@@ -10,7 +11,7 @@ var signUp = React.createClass({
 				name: '',
 				email: '',
 				username: '',
-				password: '',
+				password: ''
 
 			}
 		}
@@ -19,20 +20,21 @@ var signUp = React.createClass({
 	saveProfileState:function(event){
 		var field = event.target.name;
 		var value = event.target.value;
-
 	},
+		
 
 
 	render: function () {
 		return (
 			<div>
-				<h1> Sign Up </h1>
-			</div>
+				<h1> Sign Up here</h1>
+				<SignUpForm 
+					profile={this.state.profile}
+				/>
 
-			<LoginForm
-				profile = {this.state.profile}
 				
-			/>
+
+			</div>
 
 		);
 	}
@@ -40,3 +42,5 @@ var signUp = React.createClass({
 });
 
 module.exports = signUp;
+
+			

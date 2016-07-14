@@ -14,4 +14,4 @@ var Window = React.createClass({
 	}
 });
 
-module.exports = Window
+module.exports = Window;

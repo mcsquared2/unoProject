@@ -1,9 +1,11 @@
 'use strict'
 
-var React = require ('react')
+var React = require ('react');
+var TextInput = require ('../common/TextInput');
+
 
 var signUpForm = React.createClass({
-	render:function() {
+	render: function() {
 		return(
 			<form>
 				<TextInput
@@ -31,9 +33,9 @@ var signUpForm = React.createClass({
 					saveProfileState = {this.props.saveProfileState}
 					/>
 				<input
-				className="card yellow" 
-				type="submit" 
-				value='Continue' 
+					className="card yellow" 
+					type="submit" 
+					value='Continue' 
 				/>
 			</form>
 
@@ -41,4 +43,5 @@ var signUpForm = React.createClass({
 		);
 	}
 });
+
 module.exports = signUpForm;
