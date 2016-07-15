@@ -1,5 +1,5 @@
 var Game = require('./model')
-var Player = require('./player/model')
+// var Player = require('./player/model')
 
 
 module.exports = {
