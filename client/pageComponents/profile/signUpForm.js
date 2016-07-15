@@ -2,6 +2,7 @@
 
 var React = require ('react');
 var TextInput = require ('../common/TextInput');
+var SignUpModal = require ('../modals/signUpModal');
 
 
 var signUpForm = React.createClass({
@@ -36,6 +37,8 @@ var signUpForm = React.createClass({
 					className="card yellow" 
 					type="submit" 
 					value='Continue' 
+					onClick={this.signUpModal}
+					
 				/>
 			</form>
 

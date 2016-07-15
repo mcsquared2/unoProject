@@ -2,6 +2,7 @@
 
 var React = require('react'); 
 var SignUpForm = require('./profile/signUpForm');
+var SignUpModal = require ('./modals/signUpModal');
 
 
 var signUp = React.createClass({
