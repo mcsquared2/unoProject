@@ -2,7 +2,7 @@ var mongoose = require("mongoose")
 
 var PlayerSchema = new mongoose.Schema ({
 	
-	gameId: {type:String, default:"none"},
+	gameId: {type:String, default: null},
 	profile: {
 		username: {type:String, default:"guest"},
 		password: {type:String, default:"chickitychinathechinesechicken"},

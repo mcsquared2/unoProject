@@ -1,14 +1,36 @@
 var Player = require("./model")
+var Game = require("./game/model")
+var gameController = require('./game/controller')
 
 module.exports = {
 	//draw
+	deleteGame: deletePlayerGame,
 	delete: deletePlayerProfile,
 	index: indexProfiles,
 	newGame: newGame, 
 	newPlayer: newPlayer,
 	show: showProfile,
+	// showGame: showGame,
 	updateProfile: updatePlayerProfile,
 	
+}
+
+function deletePlayerGame (req, res)
+{
+	findPlayer(req, res, function(player)
+	{
+		gameController.delete(req, res, player.gameId, function(gameId)
+		{
+			console.log("inside deleteplayergame")
+			player.gameId = gameId
+			player.save(function (err, player) {
+				if (err) return reportError(err, res)
+				res.status(204).end()
+
+			})
+		})
+
+	})
 }
 
 function deletePlayerProfile (req, res) 
@@ -38,13 +60,31 @@ function newGame (req, res)
 {
 	findPlayer(req, res, function (player) 
 	{
+		if (player.gameId)
+		{
+			gameController.delete(req, res, player.gameId, function ()
+			{
+				player.gameId = gameId
+			})
+		} 
 		
+		
+		gameController.newGame(req, res, function(game)
+		{
+			player.gameId = game._id
+			player.save(function (err, player) {
+				if (err) return reportError(err, res)
+				res.status(201).json(game)
+
+			})
+			
+		})
 	})
 }
 
 function newPlayer (req, res) 
 {
-	console.log("testing newPlayer function")
+	// console.log("testing newPlayer function")
 	Player.create( {
 		profile : {
 			username:req.body.username,
@@ -58,6 +98,17 @@ function newPlayer (req, res)
 		res.status(201).json(player)
 	})
 }
+
+// function showGame (req, res)
+// {
+// 	console.log('we are really in the player showgame function')
+
+// 	findPlayer(req, res, function (player)
+// 	{
+// 		console.log('we are in the player showgame function')
+// 		// gameController.show(req, res, player.gameId)
+// 	})
+// }
 
 function showProfile (req, res) 
 {
@@ -85,11 +136,23 @@ function updatePlayerProfile(req, res)
 	})
 }
 
+// function findGame (req, res, gameId, success) {
+// 	Game.findById(gameId, function (err, game) {
+// 		if (err) return reportError(err, res)
+// 		if (!game) {
+// 			res.status(404).json({
+// 				error:'Could not find game with that ID'
+// 			})
+// 		} else {
+// 			success(game)
+// 		}		})
+// }
+
 
 function findPlayer (req, res, success) {
 	var id = req.params.player
 	Player.findById(id, function (err, item) {
-		if (err) return reporterror(err, res)
+		if (err) return reportError(err, res)
 		if (!item) {
 			res.status(404).json({
 				error:"Could not find item with that ID"

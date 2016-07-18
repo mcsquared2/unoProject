@@ -22,7 +22,8 @@ app.use(morgan("dev"));
 app.use(express.static(__dirname + "/dist"));
 app.use(skipper());
 
-app.use("/profile", require("./server/player/routes"))
+app.use(require("./server/player/routes"))
+app.use("/game",require("./server/player/game/routes"))
 
 app.get("*", function (req, res)
 {
