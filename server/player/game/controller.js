@@ -46,12 +46,12 @@ function drawCard (req, res)
 		for(var i =0; i < numCardsToDraw; i++)
 		{
 
-			game.hand.push(createCard())
+			game.hand[game.currentTurn].push(createCard())
 		}
 		game.save(function (err)
 		{
 			if (err) reportError(err, res)
-			res.json(game.hand)
+			res.json(game)
 		})
 	})
 
@@ -68,18 +68,26 @@ function indexGames(req, res)
 }
 
 function newGame (req, res, success) {
-	
-	newHand = [];
-	for (var i = 0; i < 7; i++) 
+	playerHands = []
+	var players = req.body.players
+	for (var j = 0; j < players; j++)
 	{
-		console.log("added card")
-		newHand.push(createCard())
-	}
+		newHand = [];
 
+		for (var i = 0; i < 7; i++) 
+			{
+				// console.log("added card")
+				newHand.push(createCard())
+			}
+		console.log("newHand = "+newHand)
+		playerHands.push(newHand)
+	}
+	console.log(playerHands)
 	Game.create( 
 	{
-		hand:newHand,
+		hand:playerHands,
 		stack:createCard(),
+		players:players
 	}, function (err, game) {
 		if (err) return reportError(err, res)
 
@@ -102,6 +110,7 @@ function updateGame (req, res)
 	var gameId = req.params.game
 	findGame(req, res, gameId, function (game) 
 	{
+		console.log(game.currentTurn)
 
 		playersCard = req.body.card
 		var valid = checkValidCard(playersCard, game)
@@ -117,17 +126,28 @@ function updateGame (req, res)
 
 			}
 			// console.log(game.stack)
-			game.hand.splice(valid.index, 1)
-			if (game.hand.length  <= 0)
+			game.hand[game.currentTurn].splice(valid.index, 1)
+			// console.log("this is a test to see if the function updateGame is being called")
+			game.currentTurn += game.turnIncrement
+			if(game.currentTurn >= game.players)
+			{
+				game.currentTurn = 0
+			}
+			if (game.hand[game.currentTurn].length  <= 0)
 			{
 				game.gameOver = true
-				game.winner = true
+				if (game.currentTurn ==0)
+				{
+					game.winner = true
+
+				}
 			}
 			game.save(function (err)
 			{
 				if(err) reportError(err, res)
-				res.json(game)
+				// res.json(game)
 			})
+			res.json(game)
 			// console.log(game.hand.indexOf(playersCard))
 			
 
@@ -148,9 +168,9 @@ function checkValidCard(playersCard, game)
 	}
 	var validCardInHand = false
 	var indexOfCard = -1
-	for (cardIndex in game.hand)
+	for (cardIndex in game.hand[game.currentTurn])
 	{
-		if (game.hand[cardIndex].color === playersCard.color && game.hand[cardIndex].num == playersCard.num)
+		if (game.hand[game.currentTurn][cardIndex].color === playersCard.color && game.hand[game.currentTurn][cardIndex].num == playersCard.num)
 		{
 			validCardInHand = true
 			indexOfCard  = cardIndex
