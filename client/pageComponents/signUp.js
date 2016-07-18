@@ -2,7 +2,22 @@
 
 var React = require('react'); 
 var SignUpForm = require('./profile/signUpForm');
-var SignUpModal = require ('./modals/signUpModal');
+var ModalForm = require ('./modals/modalForm');
+
+var SignUpModal = React.createClass({	
+	setModalState: function () {
+		return {
+			modalForm: {
+				continueButton: "Continue",
+				title: "",
+				header: "We Sent you an Email!",
+				paragraph: "Please Check your email in order to	access your password"
+				}
+			}
+		},
+	});
+
+
 
 
 var signUp = React.createClass({
@@ -17,6 +32,7 @@ var signUp = React.createClass({
 			}
 		}
 	},
+
 
 	saveProfileState:function(event){
 		var field = event.target.name;

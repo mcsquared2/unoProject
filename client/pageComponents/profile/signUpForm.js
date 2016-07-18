@@ -2,7 +2,7 @@
 
 var React = require ('react');
 var TextInput = require ('../common/TextInput');
-var SignUpModal = require ('../modals/signUpModal');
+var SignUpModal = require ('../modals/modalForm');
 
 
 var signUpForm = React.createClass({
@@ -33,13 +33,6 @@ var signUpForm = React.createClass({
 					value = {this.props.profile.password}
 					saveProfileState = {this.props.saveProfileState}
 					/>
-				<input
-					className="card yellow" 
-					type="submit" 
-					value='Continue' 
-					onClick={this.signUpModal}
-					
-				/>
 			</form>
 
 
