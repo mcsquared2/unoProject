@@ -20,7 +20,8 @@ var config = {
 		css: [
 			'node_modules/bootstrap/dist/css/bootstrap.min.css',
 			'node_modules/bootstrap/dist/css/bootstrap-theme.min.css',
-			'node_modules/toastr/build/toastr.css'
+			'node_modules/toastr/build/toastr.css',
+			'client/css/card.css'
 			],
 		dist: './dist'
 	}
@@ -49,7 +50,7 @@ var config = {
 
 // take html files from src dir and put them in dist dir, and refresh 
 gulp.task('html', function() {
-	console.log('html is opened')
+	// console.log('html is opened')
 
 	gulp.src(config.paths.html)
 		.pipe(gulp.dest(config.paths.dist))
