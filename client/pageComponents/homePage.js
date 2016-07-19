@@ -10,7 +10,7 @@ var homePage = React.createClass( {
 			<div>
 				<div>
 				</div>
-				<div>
+				<div class = "container-fluid">
 					<h1> Welcome to </h1><img src="images/unoLogo.png"/><h1>Online!</h1>
 				</div>
 				<div>
