@@ -46,7 +46,7 @@ function drawCard (req, res)
 		for(var i =0; i < numCardsToDraw; i++)
 		{
 
-			game.hand[game.currentTurn].push(createCard())
+			game.hand[game.currentTurn].cards.push(createCard())
 		}
 		game.save(function (err)
 		{
@@ -72,12 +72,12 @@ function newGame (req, res, success) {
 	var players = req.body.players
 	for (var j = 0; j < players; j++)
 	{
-		newHand = [];
+		newHand = {cards:[]};
 
 		for (var i = 0; i < 7; i++) 
 			{
 				// console.log("added card")
-				newHand.push(createCard())
+				newHand.cards.push(createCard())
 			}
 		console.log("newHand = "+newHand)
 		playerHands.push(newHand)
@@ -127,9 +127,9 @@ function updateGame (req, res)
 
 			}
 			// console.log(game.stack)
-			console.log(game.hand[game.currentTurn])
+			// console.log(game.hand[game.currentTurn])
 			var hands = game.hand
-			hands[game.currentTurn].splice(valid.index, 1)
+			hands[game.currentTurn].cards.splice(valid.index, 1)
 			game.hand = hands
 			// console.log("this is a test to see if the function updateGame is being called")
 			game.currentTurn += game.turnIncrement
@@ -137,7 +137,7 @@ function updateGame (req, res)
 			{
 				game.currentTurn = 0
 			}
-			if (game.hand[game.currentTurn].length  <= 0)
+			if (game.hand[game.currentTurn].cards.length  <= 0)
 			{
 				game.gameOver = true
 				if (game.currentTurn ==0)
@@ -153,6 +153,7 @@ function updateGame (req, res)
 
 				// res.json(game)
 			})
+			// takeAiTurn(game)
 			// console.log(game.hand.indexOf(playersCard))
 			
 
@@ -173,9 +174,9 @@ function checkValidCard(playersCard, game)
 	}
 	var validCardInHand = false
 	var indexOfCard = -1
-	for (cardIndex in game.hand[game.currentTurn])
+	for (cardIndex in game.hand[game.currentTurn].cards)
 	{
-		if (game.hand[game.currentTurn][cardIndex].color === playersCard.color && game.hand[game.currentTurn][cardIndex].num == playersCard.num)
+		if (game.hand[game.currentTurn].cards[cardIndex].color === playersCard.color && game.hand[game.currentTurn].cards[cardIndex].num == playersCard.num)
 		{
 			validCardInHand = true
 			indexOfCard  = cardIndex
