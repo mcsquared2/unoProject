@@ -6,6 +6,6 @@ router.delete('/deletegame/:game', controller.deleteSpecific)
 router.get('/', controller.index)
 router.put('/:game', controller.update)
 router.get('/:game', controller.show)
-router.put('/draw/:numCards/:game', controller.draw)
+router.put('/draw/:game', controller.draw)
 
 module.exports = router

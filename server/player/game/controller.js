@@ -40,14 +40,11 @@ function deleteSpecific (req, res) {
 function drawCard (req, res) 
 {
 	var id = req.params.game
-	var numCardsToDraw = req.params.numCards
 	findGame(req, res, id, function (game)
 	{
-		for(var i =0; i < numCardsToDraw; i++)
-		{
-
-			game.hand.push(createCard())
-		}
+		
+		game.hand.push(createCard())
+		
 		game.save(function (err)
 		{
 			if (err) reportError(err, res)
