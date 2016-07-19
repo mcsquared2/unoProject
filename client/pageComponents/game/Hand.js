@@ -13,7 +13,7 @@ var Hand = React.createClass({
 				<Card 
 					color={card.color}
 					num={card.num}
-					anotherClass="test"
+					
 				/>
 			)
 		};

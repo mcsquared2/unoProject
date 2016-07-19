@@ -6,7 +6,7 @@ var React = require('react');
 var Card = React.createClass({
 
 	render: function() {
-		var classes = "card " + this.props.color + ' ' + this.props.size + ' ' + this.props.anotherClass;
+		var classes = "card " + this.props.color + ' ' + this.props.size ;
 		return (
 			<div className={classes}>
 				<span className='inner'>

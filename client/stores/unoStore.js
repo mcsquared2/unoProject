@@ -8,7 +8,7 @@ var CHANGE_EVENT = 'change';
 var _ = require('lodash');
 var toastr = require('toastr');
 
-var playerHand = [];
+var _game = {};
 
 var UnoStore = Object.assign({}, EventEmitter.prototype, {
 
@@ -24,8 +24,8 @@ var UnoStore = Object.assign({}, EventEmitter.prototype, {
 		this.emit(CHANGE_EVENT);
 	},
 
-	getPlayerHand: function () {
-		return playerHand;
+	getGame: function () {
+		return _game;
 	}
 
 });
