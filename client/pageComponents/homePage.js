@@ -17,7 +17,7 @@ var homePage = React.createClass( {
 					<ul>
 						<li><Link to = "/login"> <Card color="red" num="Log In" /></Link></li>
 						<li><Link to = "/register"> <Card color="blue" num="Sign Up" /></Link></li>
-						<li><Link to = "/game"><Card color="red" num="Skip To Game" /></Link></li>
+						<li><Link to = "/yourgame"><Card color="red" num="Skip To Game" /></Link></li>
 					</ul>
 				</div>
 			</div>
