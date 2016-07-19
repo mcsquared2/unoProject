@@ -2,7 +2,7 @@
 
 var React = require ('react');
 var TextInput = require ('../common/TextInput');
-var SignUpModal = require ('../modals/modalForm');
+var SignUpModal = require ('../modals/ModalForm');
 
 
 var signUpForm = React.createClass({

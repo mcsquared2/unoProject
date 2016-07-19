@@ -1,6 +1,10 @@
 'use strict';
 
 var React = require ('react');
+var Button = require('react-button');
+var Modal = require('react-modal');
+var ModalBootstrap = require('react-bootstrap');
+
 
 var ModalForm = React.createClass ({
 	getInitialState() {
@@ -30,7 +34,7 @@ var ModalForm = React.createClass ({
 
 		<Modal show = {this.state.showModal} onHide = {this.close}>
 			<Modal.Header closeButton>
-				<Modal.Title id = "contained-modal-title-lg">{this.props.title}</Modal.Title>
+				<Modal.Title>{this.props.title}</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
 				<h1>{this.props.header}</h1>
