@@ -50,7 +50,7 @@ function drawCard (req, res)
 		}
 		game.save(function (err)
 		{
-			if (err) reportError(err, res)
+			if (err) return reportError(err, res)
 			res.json(game)
 		})
 	})
@@ -122,10 +122,12 @@ function updateGame (req, res)
 				game.stack.color = playersCard.newColor
 			}
 			else{
-				game.stack = playersCard
+				game.stack.num = playersCard.num
+				game.stack.color = playersCard.color
 
 			}
 			// console.log(game.stack)
+			console.log(game.hand[game.currentTurn])
 			game.hand[game.currentTurn].splice(valid.index, 1)
 			// console.log("this is a test to see if the function updateGame is being called")
 			game.currentTurn += game.turnIncrement
@@ -144,10 +146,11 @@ function updateGame (req, res)
 			}
 			game.save(function (err)
 			{
-				if(err) reportError(err, res)
+				if(err) return reportError(err, res)
+				res.json(game)
+
 				// res.json(game)
 			})
-			res.json(game)
 			// console.log(game.hand.indexOf(playersCard))
 			
 
@@ -208,7 +211,8 @@ function findGame (req, res, gameId, success) {
 			})
 		} else {
 			success(game)
-		}		})
+		}		
+	})
 }
 
 function reportError(err, res) {
@@ -217,7 +221,12 @@ function reportError(err, res) {
 			error: err.message
 		})
 	} else if (err.name === "ImproperCardError")
+	{
 		res.status(422).json({
 		error: err.message
-	}).end()
+		}).end()
+	}
+	else {
+		res.status(422).json(err)
+	}
 }
