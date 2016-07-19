@@ -64,7 +64,7 @@ function newGame (req, res)
 		{
 			gameController.delete(req, res, player.gameId, function (gameId)
 			{
-				player.gameId = gameId
+				player.gameId = null
 			})
 		} 
 		

@@ -5,10 +5,12 @@ var GameSchema = new mongoose.Schema({
 		color:{type:String, required:true},
 		num:{type:Number, required:true} 
 	},
-	hand: [[{
-		color:String, 
-		num:Number
-	}]],
+	hand: [{
+			cards:[{
+				color:String, 
+				num:Number
+			}]
+	}],
 	currentTurn: {type:Number, default:0},
 	players: {type:Number, default:4},
 	turnIncrement: {type:Number, default:1},

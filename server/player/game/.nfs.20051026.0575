@@ -40,18 +40,15 @@ function deleteSpecific (req, res) {
 function drawCard (req, res) 
 {
 	var id = req.params.game
-	var numCardsToDraw = req.params.numCards
 	findGame(req, res, id, function (game)
 	{
-		for(var i =0; i < numCardsToDraw; i++)
-		{
-
-			game.hand[game.currentTurn].push(createCard())
-		}
+		
+		game.hand.push(createCard())
+		
 		game.save(function (err)
 		{
-			if (err) return reportError(err, res)
-			res.json(game)
+			if (err) reportError(err, res)
+			res.json(game.hand)
 		})
 	})
 
@@ -68,26 +65,18 @@ function indexGames(req, res)
 }
 
 function newGame (req, res, success) {
-	playerHands = []
-	var players = req.body.players
-	for (var j = 0; j < players; j++)
+	
+	newHand = [];
+	for (var i = 0; i < 7; i++) 
 	{
-		newHand = [];
-
-		for (var i = 0; i < 7; i++) 
-			{
-				// console.log("added card")
-				newHand.push(createCard())
-			}
-		console.log("newHand = "+newHand)
-		playerHands.push(newHand)
+		console.log("added card")
+		newHand.push(createCard())
 	}
-	console.log(playerHands)
+
 	Game.create( 
 	{
-		hand:playerHands,
+		hand:newHand,
 		stack:createCard(),
-		players:players
 	}, function (err, game) {
 		if (err) return reportError(err, res)
 
@@ -110,7 +99,6 @@ function updateGame (req, res)
 	var gameId = req.params.game
 	findGame(req, res, gameId, function (game) 
 	{
-		console.log(game.currentTurn)
 
 		playersCard = req.body.card
 		var valid = checkValidCard(playersCard, game)
@@ -122,36 +110,20 @@ function updateGame (req, res)
 				game.stack.color = playersCard.newColor
 			}
 			else{
-				game.stack.num = playersCard.num
-				game.stack.color = playersCard.color
+				game.stack = playersCard
 
 			}
 			// console.log(game.stack)
-			console.log(game.hand[game.currentTurn])
-			var hands = game.hand
-			hands[game.currentTurn].splice(valid.index, 1)
-			game.hand = hands
-			// console.log("this is a test to see if the function updateGame is being called")
-			game.currentTurn += game.turnIncrement
-			if(game.currentTurn >= game.players)
-			{
-				game.currentTurn = 0
-			}
-			if (game.hand[game.currentTurn].length  <= 0)
+			game.hand.splice(valid.index, 1)
+			if (game.hand.length  <= 0)
 			{
 				game.gameOver = true
-				if (game.currentTurn ==0)
-				{
-					game.winner = true
-
-				}
+				game.winner = true
 			}
 			game.save(function (err)
 			{
-				if(err) return reportError(err, res)
+				if(err) reportError(err, res)
 				res.json(game)
-
-				// res.json(game)
 			})
 			// console.log(game.hand.indexOf(playersCard))
 			
@@ -173,9 +145,9 @@ function checkValidCard(playersCard, game)
 	}
 	var validCardInHand = false
 	var indexOfCard = -1
-	for (cardIndex in game.hand[game.currentTurn])
+	for (cardIndex in game.hand)
 	{
-		if (game.hand[game.currentTurn][cardIndex].color === playersCard.color && game.hand[game.currentTurn][cardIndex].num == playersCard.num)
+		if (game.hand[cardIndex].color === playersCard.color && game.hand[cardIndex].num == playersCard.num)
 		{
 			validCardInHand = true
 			indexOfCard  = cardIndex
@@ -213,8 +185,7 @@ function findGame (req, res, gameId, success) {
 			})
 		} else {
 			success(game)
-		}		
-	})
+		}		})
 }
 
 function reportError(err, res) {
@@ -223,13 +194,7 @@ function reportError(err, res) {
 			error: err.message
 		})
 	} else if (err.name === "ImproperCardError")
-	{
 		res.status(422).json({
 		error: err.message
-		}).end()
-	}
-	else {
-		console.trace()
-		res.status(422).json(err)
-	}
+	}).end()
 }
