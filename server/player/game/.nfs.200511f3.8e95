@@ -45,9 +45,9 @@ function drawCard (req, res)
 	var id = req.params.game
 	findGame(req, res, id, function (game)
 	{
+		
 		game.hand[game.currentTurn].cards.push(createCard())
 		game.currentTurn = nextPlayer(game.currentTurn, game.turnIncrement, game.players)
-
 		game.save(function (err)
 		{
 			if (err) return reportError(err, res)
