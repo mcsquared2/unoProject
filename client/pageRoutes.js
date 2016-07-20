@@ -16,7 +16,7 @@ var routes = (
 		<IndexRoute component={HomePage} />
 		<Route path="/login" component={LoginPage} /> 
 		<Route path="/register" component={RegisterPage} />
-		<Route path="/game" component={GamePage} />
+		<Route path="/yourgame" component={GamePage} />
 
 	</Route>
 );

@@ -1,0 +1,33 @@
+body {
+	height:100%;
+	background:#999;
+	margin:0px;
+}
+
+.gametable {
+	min-height:100%;
+	margin:0px;
+}
+
+.card-pit {
+	min-height:100%;
+	margin:0px 0px -300px 0px ;
+}
+
+.card-pit:after {
+	content:"";
+	display:block;
+}
+
+footer, .card-pit:after {
+	height:250px;
+	margin:0px;
+
+}
+
+<<<<<<< HEAD
+=======
+.test {
+	font-size:1000px;
+}
+>>>>>>> maindev
