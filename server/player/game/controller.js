@@ -1,4 +1,4 @@
-var Game = require('./model')
+var Game = require('./model');
 // var Player = require('../player/model')
 
 var colors= ['red', 'blue', 'green', 'yellow']
@@ -98,7 +98,7 @@ function newGame (req, res, success) {
 function showGame (req, res)
 {
 	var gameId = req.params.game
-	console.log(gameId)
+	// console.log(gameId)
 	findGame(req, res, gameId, function (game)
 	{
 		res.json(game)
@@ -123,16 +123,17 @@ function updateGame (req, res)
 		}
 		else {
 			// console.log("we are in the ai condition")
-			playersCard = aiTurn(game.hand[game.currentTurn].cards, game.stack)
+			playersCard = (aiTurn(game.hand[game.currentTurn].cards, game.stack))
+			console.log("this is playersCard " + playersCard)
 			// playersCard = aiTurn(testHandForWilds, game.stack)
 			
 		}
-		console.log(playersCard)
+		console.log("current Card " + playersCard)
 		if (playersCard)
 		{
 
 			var valid = checkValidCard(playersCard, game)
-			console.log(valid)
+			console.log("is the card valid " + valid)
 			if (valid.valid)
 			{
 				game.stack.num = playersCard.num
@@ -146,13 +147,10 @@ function updateGame (req, res)
 
 				}
 
+
 				// console.log(game.stack)
 				// console.log(game.game.hand[game.currentTurn].cards[game.currentTurn])
 				game.hand[game.currentTurn].cards.splice(valid.index, 1)
-				// game.hand[game.currentTurn].cards = hand
-				// console.log(game.hand[game.currentTurn].cards)
-				// console.log("this is a test to see if the function updateGame is being called")
-				// game.currentTurn = nextPlayer(game.currentTurn, game.turnIncrement, game.players)
 				if (game.hand[game.currentTurn].cards.length  <= 0)
 				{
 					game.gameOver = true
@@ -162,7 +160,17 @@ function updateGame (req, res)
 
 					}
 				}
-				// console.log(game.stack)
+				else{
+					bestCards(playersCard.num, game)
+
+					// game.hand[game.currentTurn].cards = hand
+					// console.log(game.hand[game.currentTurn].cards)
+					// console.log("this is a test to see if the function updateGame is being called")
+					game.currentTurn = nextPlayer(game.currentTurn, game.turnIncrement, game.players)
+					console.log("currentHand " + game.hand[game.currentTurn])
+				}
+				console.log(game.stack)
+				console.log(playersCard)
 				game.save(function (err)
 				{
 					if(err) return reportError(err, res)
@@ -197,6 +205,41 @@ function updateGame (req, res)
 	})
 }
 
+function bestCards(num, game)
+{
+	switch (num) 
+	{
+		case 14:
+			
+			for (var i =0; i< 4; i++)
+			{
+				var possibleNextPlayer = nextPlayer(game.currentTurn, game.turnIncrement, game.players)
+				game.hand[possibleNextPlayer].cards.push(createCard())
+			}
+			game.currentTurn = nextPlayer(game.currentTurn, game.turnIncrement, game.players)
+
+			break
+		case 12:
+			game.currentTurn = nextPlayer(game.currentTurn, game.turnIncrement, game.players)
+			break;
+		case 11:
+			for (var i =0; i< 2; i++)
+			{
+				var possibleNextPlayer = nextPlayer(game.currentTurn, game.turnIncrement, game.players)
+				game.hand[possibleNextPlayer].cards.push(createCard())
+			}
+			game.currentTurn = nextPlayer(game.currentTurn, game.turnIncrement, game.players)
+
+			break
+		case 10:
+			game.turnIncrement *= -1
+			break
+		default:
+			// do nothing
+	}
+
+}
+
 function nextPlayer(currentTurn, increment, players) 
 {
 	currentTurn += increment
@@ -204,23 +247,28 @@ function nextPlayer(currentTurn, increment, players)
 	{
 		currentTurn = 0
 	}
+	else if (currentTurn <= -1)
+	{
+		currentTurn = players - 1
+	}
 	return currentTurn
 }
 
 function aiTurn (hand, stack)
 {
-	var colors = findSimilar(hand, stack.color, 'color')
-	if (colors.length > 0)
+	var colorList = findSimilar(hand, stack.color, 'color')
+	console.log("this is our colorList " + colorList)
+	if (colorList.length > 0)
 	{
-		return colors[Math.floor(Math.random() * colors.length)]
+		return colorList[Math.floor(Math.random() * colorList.length)]
 	}
 	else {
 		var numbers = findSimilar(hand, stack.num, 'num')
-		console.log(numbers)
+		console.log("this is numbers " + numbers)
 		if (numbers.length > 0)
 		{
-			console.log("returning " + numbers)
-			return numbers[Math.floor(Math.random() * colors.length)]
+			// console.log("returning " + numbers)
+			return numbers[Math.floor(Math.random() * numbers.length)]
 
 		}
 		else {
@@ -229,7 +277,8 @@ function aiTurn (hand, stack)
 
 			if (wilds.length > 0)
 			{
-				var greatestCol = 0
+				// var greatestCol = 0
+				console.log("this is colors" + colors)
 				var newCol = colors[Math.floor(Math.random() * colors.length)]
 				// for (i in colors)
 				// {
@@ -245,8 +294,11 @@ function aiTurn (hand, stack)
 				// 	}
 				// }
 
-				w = wilds[Math.floor(Math.random() * colors.length)]
-				w['newColor'] = newCol
+				var w = wilds[Math.floor(Math.random() * wilds.length)]
+				console.log("this is the new color" + newCol)
+				w.newColor = newCol
+				console.log("this is w " + w)
+				
 				return w
 			}
 			else {

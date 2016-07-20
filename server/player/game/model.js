@@ -3,12 +3,13 @@ var mongoose = require('mongoose')
 var GameSchema = new mongoose.Schema({
 	stack: {
 		color:{type:String, required:true},
-		num:{type:Number, required:true} 
+		num:{type:Number, required:true},
 	},
 	hand: [{
 			cards:[{
 				color:String, 
-				num:Number
+				num:Number,
+				newColor:{type:String, default: ''}
 			}]
 	}],
 	currentTurn: {type:Number, default:0},
