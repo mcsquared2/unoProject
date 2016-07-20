@@ -41,7 +41,7 @@ var signUp = React.createClass({
 				/>
 				<ModalForm
 					continueButton="Continue"
-					header= "We Sent you and Email!"
+					header= "We sent you an Email!"
 					paragraph= "Please Check your email in order access your password"
 					
 				/>

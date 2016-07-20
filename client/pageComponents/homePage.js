@@ -10,14 +10,17 @@ var homePage = React.createClass( {
 			<div className = "mainpagebody">
 				<div>
 				</div>
-				<div className = "mainpageheader"  >
-					<h1> Welcome to <div className = "mainpageUnofont">UNO</div>  Online!</h1>
+				<div className = "mainpageheader" >
+
+					<h1 className = "welcome">Welcome to</h1><div className = "mainpageUnofont">UNO</div>  <h1 className = "online">Online!</h1>
 				</div>
+
+
 				<div>
 					<ul>
-						<li><Link to = "/login"> <Card color="red" num="Log In" /></Link></li>
-						<li><Link to = "/register"> <Card color="blue" num="Sign Up" /></Link></li>
-						<li><Link to = "/yourgame"><Card color="red" num="Skip To Game" /></Link></li>
+						<li><Link to = "/login"> <Card  color="red mainpagecardcss" num="Log In" /></Link></li>
+						<li><Link to = "/register"> <Card color="blue mainpagecardcss" num="Sign Up" /></Link></li>
+						<li><Link to = "/yourgame"><Card color="red mainpagecardcss" num="Play Game" /></Link></li>
 					</ul>
 				</div>
 			</div>
