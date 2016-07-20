@@ -2,7 +2,7 @@
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:900);
 
 .card {
-  width:116px;height:178px;float:left;
+  width:120px;height:180px;float:left;
   background:#fff;
   border-radius:5px;
   display:table;
@@ -24,6 +24,11 @@
   box-shadow:0 0 10px #aaaaaa;
   text-align:center;
   position:relative;
+  overflow:hidden;
+}
+.footer .card:hover {
+  border:4px #22f solid;
+  cursor:pointer;
 }
 .card .inner{
   display:table-cell;
@@ -100,6 +105,14 @@
 
 .card.yellow{
   color:#E6CA1E;
+}
+
+.card.black{
+  color:#000;
+}
+
+.card.black .inner{
+  background:#000;
 }
 
 .card.yellow .inner{

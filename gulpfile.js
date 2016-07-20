@@ -16,7 +16,7 @@ var config = {
 		html: './client/*.html',
 		js: './client/**/*.js',
 		mainJs: './client/main.js',
-		images: './client/DesignFiles/**/*',
+		images: './DesignFiles/**/*',
 		css: [
 			'node_modules/bootstrap/dist/css/bootstrap.min.css',
 			'node_modules/bootstrap/dist/css/bootstrap-theme.min.css',
@@ -91,5 +91,5 @@ gulp.task('watch', function() {
 });
 
 
-gulp.task('default', ['html', 'css','js', 'watch' ]);
+gulp.task('default', ['html', 'css','js', 'images', 'watch' ]);
 

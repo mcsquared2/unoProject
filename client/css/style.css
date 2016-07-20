@@ -1,10 +1,10 @@
-body {
+/*body {
 	height:100%;
 	background:#999;
 	margin:0px;
-}
+}*/
 
-.gametable {
+/*.gametable {
 	min-height:100%;
 	margin:0px;
 }
@@ -12,22 +12,29 @@ body {
 .card-pit {
 	min-height:100%;
 	margin:0px 0px -300px 0px ;
-}
+}*/
 
-.card-pit:after {
+/*.card-pit:after {
 	content:"";
 	display:block;
+}*/
+
+.footer {
+	/*height:auto;*/
+	/*margin:0px;*/
+	width:auto;
+	/*height:250px;*/
+	position:fixed;
+	bottom:0;
+	overflow-x:scroll;
+	overflow-y:hidden;
+	white-space:nowrap;
+
 }
 
-footer, .card-pit:after {
-	height:250px;
-	margin:0px;
-
+.footer-child {
+	width:300%;
+	/*height:250px;*/
+	display:inline-block;
 }
 
-<<<<<<< HEAD
-=======
-.test {
-	font-size:1000px;
-}
->>>>>>> maindev

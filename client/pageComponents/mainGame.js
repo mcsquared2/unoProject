@@ -2,26 +2,30 @@
 
 var React = require('react'); 
 var Hand = require('./game/Hand');
+var GameStore = require('../stores/unoStore');
 
 
 var mainGame = React.createClass( {
 	getInitialState : function () {
 		return {
-			game: {
-				hand: [
-					{color:'blue', num:9},
-					{color:'yellow', num:8},
-					{color:'red', num:7},
-					{color:'black', num:13},
-					{color:'green', num:5},
-					{color:'blue', num:10},
-					{color:'black', num:14},
-					{color:'blue', num:12},
-					{color:'blue', num:11}
-					]
+			game: GameStore.getGame()
 			}
 		}
 	},
+
+	componentWillMount: function () {
+		GameStore.addListener(this.onChange)
+	},
+
+	onChange: function () {
+		this.setState({
+			game:GameStore.getGame()
+		})
+	}
+
+	componentWillUnmount : function () {
+		GameStore.removeListener(this.onChange)
+	}
 
 
 

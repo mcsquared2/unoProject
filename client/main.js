@@ -7,9 +7,9 @@ var ReactDOM = require('react-dom');
 var Router = require('react-router').Router;
 var browserHistory = require('react-router').browserHistory;
 var routes = require('./pageRoutes');
-// var InitializeActionCreator = require('./actions/initializeActionCreator');
+var InitializeGameActionCreator = require('./actions/initializeActionCreator');
 
-// InitializeActionCreator.initializeApp();
+InitializeActionCreator.initializeApp();
 
 
 //dood

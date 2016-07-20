@@ -27,7 +27,9 @@ var Hand = React.createClass({
 		}
 		return (
 			<div className="footer">
-				{output}
+				<div className="footer-child">
+					{output}
+				</div>
 			</div>
 		)
 	}

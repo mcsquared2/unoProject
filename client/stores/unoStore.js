@@ -8,6 +8,7 @@ var CHANGE_EVENT = 'change';
 var _ = require('lodash');
 var toastr = require('toastr');
 
+var _player = {}
 var _game = {};
 
 var UnoStore = Object.assign({}, EventEmitter.prototype, {

@@ -7,7 +7,7 @@ var Window = React.createClass({
 	render: function () {
 		// console.log("this is inside the window render")
 		return (
-			<div className="container">
+			<div >
 					{this.props.children}
 			</div>
 		);
