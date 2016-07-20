@@ -12,11 +12,11 @@ var ModalForm = React.createClass ({
 	},
 
 	hideModal () {
-		this.setState({ show: false});
+		this.setState({show: false});
 	},
 
 	showModal () {
-		this.setState({ show: true});
+		this.setState({show: true});
 	},
 
 
@@ -24,15 +24,15 @@ var ModalForm = React.createClass ({
 	return (
 		<div>
 			<Button 
-			bsStyle="primary" 
+			
 			onClick={this.showModal}>
 			{this.props.continueButton}
 			</Button>
 
 
 		<Modal 
-
-		show = {this.state.showModal} 
+		{...this.props}
+		show = {this.state.show} 
 		onHide = {this.hideModal}
 		
 		>
