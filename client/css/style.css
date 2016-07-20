@@ -1,6 +1,6 @@
 body {
 	height:100%;
-	background:#999;
+	background:#f2f2f2;
 	margin:0px;
 }
 
@@ -25,6 +25,13 @@ footer, .card-pit:after {
 
 }
 
-.test {
-	font-size:1000px;
+.mainpageheader { 
+	margin: 100px;
+
 }
+
+.mainpageUnofont {
+	font-size: 60px;
+	text-transform: rotate(30deg);
+}
+

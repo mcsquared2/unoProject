@@ -7,11 +7,11 @@ var Card = require("../Card");
 var homePage = React.createClass( {
 	render: function() {
 		return (
-			<div>
+			<div className = "mainpagebody">
 				<div>
 				</div>
-				<div class = "container-fluid">
-					<h1> Welcome to </h1><img src="images/unoLogo.png"/><h1>Online!</h1>
+				<div className = "mainpageheader"  >
+					<h1> Welcome to <div className = "mainpageUnofont">UNO</div>  Online!</h1>
 				</div>
 				<div>
 					<ul>
