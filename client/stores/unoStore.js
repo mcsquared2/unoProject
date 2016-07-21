@@ -10,11 +10,7 @@ var _ = require('lodash');
 // var toastr = require('toastr');
 
 var _player = null
-var _game = {
-	hand:[{
-			cards:[{color:'red', num:0}]
-		}]
-};
+var _game = null;
 
 var UnoStore = Object.assign({}, EventEmitter.prototype, {
 
@@ -45,6 +41,7 @@ Dispatcher.register(function (action) {
 	switch (action.actionType) {
 		case ActionTypes.INITIALIZE:
 			_player = action.initialData.player;
+			_game = action.initialData.game;
 			break;
 		case ActionTypes.NEW_GAME:
 			_game = action.game

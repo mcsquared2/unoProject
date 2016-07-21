@@ -39,6 +39,26 @@
 }
 
 .small {
-	width:116px;
+	width:125px;
 }
+
+/*.aiIconMany {
+	background-image:url(images/images/);
+}*/
+
+.aiIcon {
+	width : 200px;
+	float:left;
+}
+
+#selected {
+
+	border: 4px #933 solid;
+}
+
+.buttn {
+	cursor:pointer;
+}
+
+
 

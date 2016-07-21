@@ -16,17 +16,22 @@ var InitializeGameActionCreator = {
 		var playerPromise = API.createPlayer(guestProfile)
 		playerPromise
 			.then( function (player) {
-				Dispatcher.dispatch({
-					actionType: ActionTypes.INITIALIZE,
-					initialData: {
-						player: player,
-					}
-				})
+				var gamePromise = API.createGame(player._id, 4)
+				gamePromise
+				.then(function (game) {
+					console.log(game)
+					Dispatcher.dispatch({
+						actionType: ActionTypes.INITIALIZE,
+						initialData: {
+							player: player,
+							game:game
+						}
+					})
+				})		
 			})
 			.fail(function (xhr, status, err) {
-				console.log('Get Game Failed!')
+				console.log('Init Failed!')
 			});
-		
 	}
 };
 

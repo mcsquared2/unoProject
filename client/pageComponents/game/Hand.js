@@ -9,11 +9,9 @@ var GameActionCreator = require("../../actions/GameLogicActionCreator");
 
 var Hand = React.createClass({
 
-	draw: function ()
-	{
-		GameActionCreator.drawCard(this.props.game._id)
-	},
+	
 	render: function() {
+		// console.log(this.props.select)
 		var hand = this.props.game.hand[0].cards
 		var output;
 		var buttonContent;
@@ -22,11 +20,14 @@ var Hand = React.createClass({
 				<Card 
 					color={card.color}
 					num={card.num}
+					key={card._id}
+					select={this.props.select}
 					
 				/>
 			)
-		};
-		console.log(this.props.game)
+		}
+		;
+		// console.log(this.props.game)
 		if (this.props.game.currentTurn == 0)
 		{
 			buttonContent = "Play Card";
@@ -41,17 +42,23 @@ var Hand = React.createClass({
 		else {
 			output = (<p>You have no cards! You win!</p>)
 		}
+		
 		return (
-			<div className="footer">
-				<div>
-				{buttonContent}
+			<div>
+				<div onClick={this.props.update} className="buttn">
+					{buttonContent}
 				</div>
-				<div className="footer-child">
-					{output}
-					
-					<img className="small" onClick={this.draw} src="images/images/draw.png" />
-					
+				<div>
+					<p>It is {this.props.game.currentTurn}'s turn</p>
+				</div>
+				<div className="footer">
+					<div className="footer-child">
+						{output}
+						
+						<img className="small" onClick={this.props.draw} src="images/images/draw.png" />
+						
 
+					</div>
 				</div>
 			</div>
 		)
