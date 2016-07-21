@@ -41,18 +41,21 @@ function deleteSpecific (req, res) {
 }
 
 function drawCard (req, res) 
-{
+{	
 	var id = req.params.game
 	findGame(req, res, id, function (game)
-	{
-		game.hand[game.currentTurn].cards.push(createCard())
-		game.currentTurn = nextPlayer(game.currentTurn, game.turnIncrement, game.players)
-
-		game.save(function (err)
+	{	
+		if (game.currentTurn == 0)
 		{
-			if (err) return reportError(err, res)
-			res.json(game)
-		})
+			game.hand[game.currentTurn].cards.push(createCard())
+			game.currentTurn = nextPlayer(game.currentTurn, game.turnIncrement, game.players)
+
+			game.save(function (err)
+			{
+				if (err) return reportError(err, res)
+				res.json(game)
+			})
+		}
 	})
 
 }

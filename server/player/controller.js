@@ -4,6 +4,7 @@ var gameController = require('./game/controller')
 
 module.exports = {
 	//draw
+	deleteAll : deleteAllPlayers,
 	deleteGame: deletePlayerGame,
 	delete: deletePlayerProfile,
 	index: indexProfiles,
@@ -13,6 +14,18 @@ module.exports = {
 	// showGame: showGame,
 	updateProfile: updatePlayerProfile,
 	
+}
+
+function deleteAllPlayers (req, res)
+{
+	Player.remove({}, function(err) {
+            if (err) {
+                console.log(err)
+            } else {
+                res.status(204).end('success');
+            }
+        }
+    );
 }
 
 function deletePlayerGame (req, res)
