@@ -26,7 +26,7 @@ var LoginForm = React.createClass({
 
 
 				<input
-				className="card yellow" 
+				
 				type="submit" 
 				value='Continue' 
 				// onClick={this.props.saveTodo}

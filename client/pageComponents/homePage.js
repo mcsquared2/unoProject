@@ -20,9 +20,9 @@ var homePage = React.createClass( {
 
 				<div>
 					<ul>
-						<li><Link to = "/login"> <Card color="yellow mainpagecardcss" num= "Sign In"/></Link></li>
-						<li><Link to = "/register"> <Card color="blue mainpagecardcss" num="Sign Up" /></Link></li>
-						<li><Link to = "/yourgame"><Card color="red mainpagecardcss" num="Play Now" /></Link></li>
+						<li className = "mainpagecardcss"><Link to = "/login" ><img src="images/images/UnoCons/LogInCard.png" height = "350" width = "300"/> </Link></li>
+						<li className = "mainpagecardcss"><Link to = "/register"> <img src="images/images/UnoCons/SignUpCard.png" height = "350" width = "300"/> </Link></li>
+						<li className = "mainpagecardcss"><Link to = "/yourgame"><img src="images/images/UnoCons/PlayGameCard.png" height = "350" width = "300"/> </Link></li>
 					</ul>
 				</div>
 			</div>
