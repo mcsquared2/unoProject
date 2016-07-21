@@ -45,7 +45,7 @@ var Hand = React.createClass({
 		
 		return (
 			<div>
-				<div onClick={this.props.update} className="buttn">
+				<div onClick={this.props.update} className="btn">
 					{buttonContent}
 				</div>
 				<div>

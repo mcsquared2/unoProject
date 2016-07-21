@@ -25,8 +25,6 @@ var Card = React.createClass({
 			object = this.props.num;
 		}
 		var classes = "card " + this.props.color + ' ' + this.props.size + ' ' + this.props.mainpagecardcss;
-
-		}
 		var click = function() {
 			this.state.selected = !this.state.selected
 			// console.log(this.state.selected)
