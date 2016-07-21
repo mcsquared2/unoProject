@@ -12,6 +12,8 @@ router.get('/profile/', controller.index)
 router.put("/profile/:player", controller.updateProfile)
 
 router.delete('/profile/:player', controller.delete)
+router.delete('/profile', controller.deleteAll)
+
 
 // routes for creating and updating a game 
 router.post('/game/:player', controller.newGame)

@@ -3,29 +3,55 @@
 var React = require('react'); 
 var Hand = require('./game/Hand');
 var GameStore = require('../stores/unoStore');
+var GameActionCreator = require("../actions/GameLogicActionCreator");
+var InitializeGameActionCreator = require('../actions/initializeGameActionCreator');
+
+
 
 
 var mainGame = React.createClass( {
 	getInitialState : function () {
+
 		return {
+			player: GameStore.getPlayer(),
 			game: GameStore.getGame()
-			}
+			
 		}
 	},
 
 	componentWillMount: function () {
-		GameStore.addListener(this.onChange)
+		
+		// console.log("this is the player " +this.state.player + "/n this is the game " + this.state.game)
+		GameStore.addChangeListener(this.onChange);
+
+
+
+	},
+
+	componentDidMount: function () {
+		if (!this.state.player)
+		{
+			InitializeGameActionCreator.initializeApp();
+
+		}
+		if (this.state.player.gameId)
+		{
+			GameActionCreator.getGame(this.state.player.gameId)
+		}
+		else {
+			GameActionCreator.addNewGame(this.state.player._id)
+		}
 	},
 
 	onChange: function () {
 		this.setState({
 			game:GameStore.getGame()
 		})
-	}
+	},
 
 	componentWillUnmount : function () {
-		GameStore.removeListener(this.onChange)
-	}
+		GameStore.removeChangeListener(this.onChange)
+	},
 
 
 

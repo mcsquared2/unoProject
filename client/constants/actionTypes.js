@@ -3,7 +3,6 @@
 module.exports = {
 	INITIALIZE: 'initiliaze game page',
 	NEW_GAME: 'new game',
-	DRAW_CARD: 'draw card',
-	PLAY_CARD: 'play card',
+	UPDATE_GAME: "update game",
 	DELETE_GAME: 'delete game'
 }
