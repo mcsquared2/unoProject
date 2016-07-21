@@ -2,6 +2,7 @@
 
 var React = require('react'); 
 var Hand = require('./game/Hand');
+var ModalForm = require('./modals/ModalForm');
 
 
 var mainGame = React.createClass( {
@@ -35,6 +36,26 @@ var mainGame = React.createClass( {
 				<Hand
 					game={this.state.game}
 				/>
+				<div>
+				<ModalForm
+					continueButton="Rules"
+					header="ruleBook"
+					paragraph="These are the rules of UNO"
+				/>
+				</div>
+				<div>
+				<ModalForm
+					continueButton="Settings"
+					header="Change your Settings"
+					paragraph="random words and settings"
+				/>
+				</div>
+				<div>
+				<ModalForm
+					continueButton="Profile"
+					header="Your Profile"
+				/>
+				</div>
 			</div>
 		)
 	}

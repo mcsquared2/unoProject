@@ -20,9 +20,9 @@ var homePage = React.createClass( {
 
 				<div>
 					<ul>
-						<li><Link to = "/login"> <Card color="red mainpagecardcss inconDiv" image="images/images/UnoCons/LogIn.png" /></Link></li>
-						<li><Link to = "/register"> <Card color="blue mainpagecardcss inconDiv" num="Sign Up" /></Link></li>
-						<li><Link to = "/yourgame"><Card color="red mainpagecardcss inconDiv" num="Play Game" /></Link></li>
+						<li><Link to = "/login"> <Card color="yellow mainpagecardcss" num= "Sign In"/></Link></li>
+						<li><Link to = "/register"> <Card color="blue mainpagecardcss" num="Sign Up" /></Link></li>
+						<li><Link to = "/yourgame"><Card color="red mainpagecardcss" num="Play Now" /></Link></li>
 					</ul>
 				</div>
 			</div>
@@ -35,3 +35,5 @@ var homePage = React.createClass( {
 module.exports = homePage;
 
 // 
+
+// "images/images/UnoCons/LogIn.png" 
