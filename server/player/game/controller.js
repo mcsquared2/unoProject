@@ -313,8 +313,10 @@ function aiTurn (hand, stack)
 
 function checkValidCard(playersCard, game)
 {
+
+
 	var validCardInStack = false
-	if (playersCard.color == game.stack.color || playersCard.num == game.stack.num || playersCard.color == "black")
+	if (playersCard.color == game.stack.color || playersCard.num == game.stack.num || (playersCard.color == "black" && playersCard.newColor))
 	{
 		validCardInStack = true
 	}
@@ -323,7 +325,7 @@ function checkValidCard(playersCard, game)
 	for (cardIndex in game.hand[game.currentTurn].cards)
 	// for (cardIndex in testHandForWilds)
 	{
-		if (game.hand[game.currentTurn].cards[cardIndex].color === playersCard.color && game.hand[game.currentTurn].cards[cardIndex].num == playersCard.num)
+		if (game.hand[game.currentTurn].cards[cardIndex]._id === playersCard._id)
 		// if (testHandForWilds[cardIndex].color === playersCard.color && testHandForWilds[cardIndex].num == playersCard.num)
 
 		{

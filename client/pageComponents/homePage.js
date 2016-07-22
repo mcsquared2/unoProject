@@ -18,7 +18,7 @@ var homePage = React.createClass( {
 				</div>
 
 
-				<div>
+				<div className="centered width950">
 					<ul>
 						<li className = "mainpagecardcss"><Link to = "/login" ><img src="images/images/UnoCons/LogInCard.png" height = "350" width = "300"/> </Link></li>
 						<li className = "mainpagecardcss"><Link to = "/register"> <img src="images/images/UnoCons/SignUpCard.png" height = "350" width = "300"/> </Link></li>

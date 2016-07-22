@@ -9,7 +9,7 @@ var GameSchema = new mongoose.Schema({
 			cards:[{
 				color:String, 
 				num:Number,
-				newColor:{type:String, default: ''}
+				newColor:{type:String, default: null}
 			}]
 	}],
 	currentTurn: {type:Number, default:0},

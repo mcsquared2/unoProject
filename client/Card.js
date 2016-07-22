@@ -2,6 +2,7 @@
 
 
 var React = require('react'); 
+var toastr = require('toastr')
 
 var Card = React.createClass({
 	colors:['red', 'blue','green','yellow'],
@@ -14,6 +15,8 @@ var Card = React.createClass({
 
 	
 	render: function() {
+		// console.log("%%" + JSON.stringify(this.props.card))
+		// console.log("this card is selected when " + this.state.selected)
 		var object = ''
 		if (this.props.image) 
 		{
@@ -26,27 +29,29 @@ var Card = React.createClass({
 		}
 		var classes = "card " + this.props.color + ' ' + this.props.size + ' ' + this.props.mainpagecardcss;
 		var click = function() {
-			this.state.selected = !this.state.selected
-			// console.log(this.state.selected)
-			// console.log(typeof this.props.select)
-			if (this.state.selected)
+			console.log(this.props.currentTurn)
+			if (this.props.currentTurn == 0)
 			{
-				console.log({
-						color:this.props.color,
-						num:this.props.num,
-						newColor:this.colors[Math.floor(Math.random() * this.colors.length)]
-					})
-				this.state.selected = this.props.select(
-					{
-						color:this.props.color,
-						num:this.props.num,
-						newColor:this.colors[Math.floor(Math.random() * this.colors.length)]
-					});
-				
+				// console.log("we are in the click function")
 
-			}
-			else {
-				this.props.select(null)
+				this.state.selected = !this.state.selected
+				// console.log(this.state.selected)
+				// console.log(typeof this.props.select)
+				if (this.state.selected)
+				{
+					// console.log(this.props.card)
+					this.props.card.newColor = this.colors[Math.floor(Math.random() * this.colors.length)]
+					this.state.selected = this.props.select(this.props.card);
+					if (this.state.selected == false)
+					{
+						toastr.error("You already have a card selected")
+					}
+					
+
+				}
+				else {
+					this.props.select(null)
+				}
 			}
 			
 		}.bind(this);

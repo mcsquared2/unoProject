@@ -10,6 +10,7 @@ var GameStore = require('../stores/unoStore');
 var GameActionCreator = require("../actions/GameLogicActionCreator");
 var InitializeGameActionCreator = require('../actions/initializeGameActionCreator');
 var UnoStore = require("../stores/unoStore");
+var toastr = require('toastr')
 
 
 
@@ -21,21 +22,33 @@ var mainGame = React.createClass( {
 		GameActionCreator.drawCard(this.state.game._id)
 	},
 	update: function () {
-		GameActionCreator.update(this.state.game._id, this.state.selectedCard, this.state.game.turn)
-		this.state.selectedCard = undefined
+		if (
+				this.state.game.currentTurn != 0 || 
+				(this.state.selectedCard.color == this.state.game.stack.color || 
+				this.state.selectedCard.num == this.state.game.stack.num || 
+				(this.state.selectedCard.color == "black" && this.state.selectedCard.newColor)))
+		{
+			console.log(this.state.selectedCard)
+			GameActionCreator.update(this.state.game._id, this.state.selectedCard, this.state.game.turn)
+			this.state.selectedCard = undefined
+		}
+		else {
+			toastr.error("You can't play that card, try again")
+		}
+		
 	},
 	getInitialState : function () {
 
 		return {
 			player: GameStore.getPlayer(),
 			game: GameStore.getGame(),
-			selectedCard: undefined
+			selectedCard: undefined,
 			
 		}
 	},
 	select: function (card) {
-		console.log("this card is selectedCard " + this.state.selectedCard + " and this is card " + card)
-		console.log(card && !this.state.selectedCard)
+		// console.log("this card is selectedCard " + this.state.selectedCard + " and this is card " + card)
+		// console.log(card && !this.state.selectedCard)
 		var selld = false
 		if ((card && !this.state.selectedCard) || (!card && this.state.selectedCard))
 		{
@@ -72,23 +85,14 @@ var mainGame = React.createClass( {
 	render: function() {
 		return (
 			<div className="gametable">
-				<CardPit
-					game={this.state.game}
-					draw={this.draw}
-				/>
-				<Hand
-					game={this.state.game}
-					draw={this.draw}
-					select={this.select}
-					update={this.update}
-				/>
 				<div>
-				<ModalForm
-					continueButton="Rules"
-					header="ruleBook"
-					paragraph="These are the rules of UNO"
-				/>
+					<ModalForm
+						continueButton="Rules"
+						header="ruleBook"
+						paragraph="These are the rules of UNO"
+					/>
 				</div>
+
 				<div>
 				<ModalForm
 					continueButton="Settings"
@@ -102,6 +106,21 @@ var mainGame = React.createClass( {
 					header="Your Profile"
 				/>
 				</div>
+
+				<CardPit
+					game={this.state.game}
+					draw={this.draw}
+				/>
+
+
+				<Hand
+					game={this.state.game}
+					draw={this.draw}
+					select={this.select}
+					update={this.update}
+				/>
+				
+				
 			</div>
 		)
 	}
