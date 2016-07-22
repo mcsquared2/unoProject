@@ -11,10 +11,10 @@ var AI = React.createClass({
 			source = "images/images/unohand.png"
 		}
 		else {
-			source = "images/images/uno.png"
+			source = "images/images/unocardcopy.png"
 		}
 		return (
-			<div>
+			<div id={this.props.id}>
 				<img className="aiIcon" src={source} />
 				{this.props.amtOfCards}
 			</div>

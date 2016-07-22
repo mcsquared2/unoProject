@@ -56,7 +56,7 @@ var Card = React.createClass({
 			
 		}.bind(this);
 		// console.log(this.props.select)
-		var classes = "card " + this.props.color + ' ' + this.props.size ;
+		var classes = "card " + this.props.color + ' ' + this.props.size +  ' ' + this.props.classes ;
 		if (this.state.selected)
 		{
 			this.state.id = 'selected'

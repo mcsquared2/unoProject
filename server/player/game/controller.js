@@ -136,7 +136,7 @@ function updateGame (req, res)
 		{
 
 			var valid = checkValidCard(playersCard, game)
-			console.log("is the card valid " + valid)
+			console.log("is the card valid " + JSON.stringify(valid))
 			if (valid.valid)
 			{
 				game.stack.num = playersCard.num
@@ -173,7 +173,7 @@ function updateGame (req, res)
 					console.log("currentHand " + game.hand[game.currentTurn])
 				}
 				console.log(game.stack)
-				console.log(playersCard)
+				// console.log(playersCard)
 				game.save(function (err)
 				{
 					if(err) return reportError(err, res)

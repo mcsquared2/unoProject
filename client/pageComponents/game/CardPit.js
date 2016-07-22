@@ -12,6 +12,7 @@ var CardPit = React.createClass({
 	render: function() {
 		var ais = []
 		var content;
+		var mapIter = 0
 		for (var i = 1; i< this.props.game.hand.length; i++)
 		{
 			// console.log(this.props.game.hand[i])
@@ -19,10 +20,12 @@ var CardPit = React.createClass({
 		}
 
 		var createAiIcons = function (aiHand) {
+			mapIter++
 			return (
 				<AiIcon
 					amtOfCards={aiHand.len}
 					key = {aiHand.id}
+					id={"player"+mapIter}
 				/>
 			)
 		}
@@ -41,9 +44,10 @@ var CardPit = React.createClass({
 				<Card
 					color={this.props.game.stack.color}
 					num={this.props.game.stack.num}
+					classes={"stack"}
 
 				/>
-				<img src="images/images/draw.png" onClick={this.props.draw} className="small" />
+				<img src="images/images/draw.png" onClick={this.props.draw} className="small selector" id="drawPile" />
 			</div>
 		);
 

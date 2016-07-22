@@ -107,6 +107,8 @@ var mainGame = React.createClass( {
 						header="Your Profile"
 					/>
 					</div>
+					<div className="clear">
+					</div>
 				</div>
 
 				<CardPit
