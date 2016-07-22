@@ -59,12 +59,9 @@ var Hand = React.createClass({
 				<div className="footer">
 					<div className="footer-child">
 						{output}
-						
-						<img className="small" onClick={this.props.draw} src="images/images/draw.png" />
-						
-
 					</div>
 				</div>
+						
 			</div>
 		)
 	}

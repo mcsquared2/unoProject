@@ -61,12 +61,14 @@ var GameLogicActionCreator = {
 
 	update: function(gameId, card, turn)
 	{
+		console.log(turn)
 		if (card || turn != 0)
 		{
 			var gamePromise = API.playCard(gameId, card);
-
+			// console.log(gamePromise)
 			gamePromise
 				.then( function (game) {
+					// console.log("here we are")
 					Dispatcher.dispatch({
 						actionType: ActionTypes.UPDATE_GAME,
 						game: game
@@ -76,9 +78,10 @@ var GameLogicActionCreator = {
 					console.log('Get Game Failed!')
 				});
 		}
-		else {
+		else if(!card){
 			toastr.error("There are no cards selected")
 		}
+
 	}
 };
 

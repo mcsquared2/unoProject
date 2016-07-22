@@ -64,6 +64,38 @@ var Card = React.createClass({
 		else {
 			this.state.id = ''
 		}
+		var specialCard = '';
+		if (this.props.num > 9)
+		{
+			switch (this.props.num)
+			{
+				case 10:
+					specialCard = "images/images/UnoCons/" + this.props.color + "reverse.png"
+					object = (<img src={specialCard} className="icon" />)
+					break;
+				case 11:
+					specialCard = "images/images/UnoCons/drawtwo" + this.props.color + ".png"
+					object = (<img src={specialCard} className="icon" />)
+
+					break;
+				case 12:
+					specialCard = "images/images/UnoCons/" + this.props.color + "skip.png"
+					object = (<img src={specialCard} className="icon" />)
+
+					break;
+				case 13:
+					specialCard = "images/images/UnoCons/wild.png"
+					object = (<img src={specialCard} className="icon" />)
+
+					break;
+				case 14:
+					specialCard = "images/images/UnoCons/drawfour.png"
+					object = (<img src={specialCard} className="icon" />)
+
+					break;
+				default:
+			}
+		}
 		// console.log(classes)
 		return (
 			<div className={classes} onClick={click} id={this.state.id}>

@@ -43,9 +43,12 @@ function deleteGame (player) {
 }
 
 function playCardFromHand (gameid, card) {
+	console.log("this is " + JSON.stringify(card))
+
 	var url = '/game/' + gameid;
 	var data = {card:card};
 	var type = 'PUT';
+	
 
 	return ajax(url, data, type);
 }

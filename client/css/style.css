@@ -22,8 +22,9 @@ body {
 .footer {
 	/*height:auto;*/
 	/*margin:0px;*/
-	width:auto;
+	max-width:calc(100%);
 	/*height:250px;*/
+	float:left;
 	position:fixed;
 	bottom:0;
 	overflow-x:scroll;
@@ -33,13 +34,13 @@ body {
 }
 
 .footer-child {
-	width:200%;
+	width:calc(100% + 100px);
 	/*height:250px;*/
 	display:inline-block;
 }
 
 .small {
-	width:125px;
+	width:120px;
 }
 
 
@@ -175,6 +176,34 @@ ul {
     text-align: center;
     border-radius: 8px;
 }
+
+
+.selector:hover {
+	box-sizing:border-box;
+	border:4px rgba(250, 58, 47, .8) solid;
+	border-radius:8px;
+	overflow:hidden;
+}
+
+.options {
+	
+}
+
+.options:first-child {
+	float:left;
+}
+
+.clear {
+	clear:both;
+}
+
+.right {
+	position:fixed;
+	right:0;
+}
+
+#drawHand {
+	bottom:30px;
 }
 
 

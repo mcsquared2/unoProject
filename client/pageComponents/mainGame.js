@@ -29,7 +29,7 @@ var mainGame = React.createClass( {
 				(this.state.selectedCard.color == "black" && this.state.selectedCard.newColor)))
 		{
 			console.log(this.state.selectedCard)
-			GameActionCreator.update(this.state.game._id, this.state.selectedCard, this.state.game.turn)
+			GameActionCreator.update(this.state.game._id, this.state.selectedCard, this.state.game.currentTurn)
 			this.state.selectedCard = undefined
 		}
 		else {
@@ -85,26 +85,28 @@ var mainGame = React.createClass( {
 	render: function() {
 		return (
 			<div className="gametable">
-				<div>
-					<ModalForm
-						continueButton="Rules"
-						header="ruleBook"
-						paragraph="These are the rules of UNO"
-					/>
-				</div>
+				<div className="options">
+					<div>
+						<ModalForm
+							continueButton="Rules"
+							header="ruleBook"
+							paragraph="These are the rules of UNO"
+						/>
+					</div>
 
-				<div>
-				<ModalForm
-					continueButton="Settings"
-					header="Change your Settings"
-					paragraph="random words and settings"
-				/>
-				</div>
-				<div>
-				<ModalForm
-					continueButton="Profile"
-					header="Your Profile"
-				/>
+					<div>
+					<ModalForm
+						continueButton="Settings"
+						header="Change your Settings"
+						paragraph="random words and settings"
+					/>
+					</div>
+					<div>
+					<ModalForm
+						continueButton="Profile"
+						header="Your Profile"
+					/>
+					</div>
 				</div>
 
 				<CardPit

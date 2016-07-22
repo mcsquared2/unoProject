@@ -177,6 +177,7 @@ function updateGame (req, res)
 				game.save(function (err)
 				{
 					if(err) return reportError(err, res)
+					console.log(game)
 					res.json(game)
 
 					// res.json(game)
@@ -325,7 +326,8 @@ function checkValidCard(playersCard, game)
 	for (cardIndex in game.hand[game.currentTurn].cards)
 	// for (cardIndex in testHandForWilds)
 	{
-		if (game.hand[game.currentTurn].cards[cardIndex]._id === playersCard._id)
+		console.log(game.hand[game.currentTurn].cards[cardIndex]._id, playersCard._id)
+		if (String(game.hand[game.currentTurn].cards[cardIndex]._id) === String(playersCard._id))
 		// if (testHandForWilds[cardIndex].color === playersCard.color && testHandForWilds[cardIndex].num == playersCard.num)
 
 		{
